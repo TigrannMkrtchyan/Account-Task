@@ -1,0 +1,1 @@
+export const isMock = () => process.env.REACT_APP_MOCK_DATA === "false";
