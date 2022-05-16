@@ -1,14 +1,12 @@
+import { Card } from 'antd';
 import { useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { AccountContext } from '../Context/accountContext';
-import { Card } from 'antd';
-import "antd/dist/antd.css";
 
 const SingleAccount = () => {
-
-  const data = useContext(AccountContext)
+  const { accounts } = useContext(AccountContext)
   const { id } = useParams()
-  const account = data.find((value) => value.id.toString() === id)
+  const account = accounts.find((value) => value.id.toString() === id)
 
   return (
     <div>

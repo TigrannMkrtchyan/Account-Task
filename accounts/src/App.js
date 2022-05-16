@@ -1,16 +1,15 @@
-import React from 'react'
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Accounts from './Commponents/accounts';
 import SingleAccount from './Commponents/singleAccount';
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 const App = () => {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/Account" element={<Accounts />} />
-          <Route path="/Account/:id" element={<SingleAccount />} />
-          <Route path="*" element={< Navigate replace to="Account" />} />
+          <Route path="/account" element={<Accounts />} />
+          <Route path="/account/:id" element={<SingleAccount />} />
+          <Route path="*" element={< Navigate replace to="account" />} />
         </Routes>
       </BrowserRouter>
     </div>
@@ -18,4 +17,3 @@ const App = () => {
 }
 
 export default App
-

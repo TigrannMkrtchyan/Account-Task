@@ -1,4 +1,5 @@
 const express = require('express')
+const bodyParser = require('body-parser');
 const app = express()
 const cors = require('cors')
 const port = 4000
@@ -30,8 +31,26 @@ app.use(
   })
 )
 
-app.get('/data', (req, res) => {
-  res.send(data)
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
+
+const dataEndpoint = '/data'
+
+app.get(dataEndpoint, (req, res) => {
+  res.send({ data })
+})
+
+app.post(dataEndpoint, (req, res) => {
+  const { body } = req
+  const date = new Date().getDay().toString() + '-' + new Date().getMonth().toString() + '-' + new Date().getFullYear().toString()
+  const payload = { id: data.length + 1, createdOn: date, ...body }
+  data.push(payload)
+  res.send({ data })
+})
+
+app.delete(dataEndpoint, (req, res) => {
+  data.pop()
+  res.send({ data })
 })
 
 app.listen(port, () => {
